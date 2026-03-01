@@ -1,0 +1,22 @@
+<mujoco>
+	<option gravity="0 0 -9.81" />
+	<asset>
+		<texture name="planetex" builtin="checker" width="1000" height="1000" rgb1="0.1 0.2 0.3" rgb2="0.4 0.5 0.6" type="2d"/>
+		<material name="planemat" texture="planetex" texrepeat="5 5" texuniform="true" />
+	</asset>
+	<worldbody>
+		<light pos="0 0 3" directional="true" />
+		<geom type="plane" size="0 0 0.1" material="planemat" />
+		<body pos="0 0 0.5">
+			<joint name="cartJ" type='slide' axis="1 0 0" limited="true" range="-5 5"/>
+			<geom type="box" size="1 1 0.5" rgba="0.5 0.5 0.5 1" mass="1"/>
+			<body pos="0 0 0.5"> 
+				<joint name="poleJ" type="hinge" axis="0 1 0" />
+				<geom type="box" size="0.1 0.1 1" pos="0 0 1" rgba="1 1 0 1" mass="0.1" />
+			</body>
+		</body>
+	</worldbody>
+	<actuator>
+		<motor joint="cartJ" gear="200" name="cartJ" />
+	</actuator>
+</mujoco>
